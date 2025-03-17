@@ -2,6 +2,7 @@ const express = require('express');
 const yahooFinance = require('yahoo-finance2').default;
 const app = express();
 const port = 3000;
+const path = require("path");
 
 // // Set EJS as the templating engine
 // app.set('view engine', 'ejs');

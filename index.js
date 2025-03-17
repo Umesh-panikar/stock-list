@@ -3,11 +3,19 @@ const yahooFinance = require('yahoo-finance2').default;
 const app = express();
 const port = 3000;
 
-// Set EJS as the templating engine
-app.set('view engine', 'ejs');
+// // Set EJS as the templating engine
+// app.set('view engine', 'ejs');
 
-// Serve static files (CSS, JS, etc.)
-app.use(express.static('public'));
+// // Serve static files (CSS, JS, etc.)
+// app.use(express.static('public'));
+
+
+// Set EJS as the templating engine
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));  // Ensure Vercel finds the views folder
+
+// Serve static files (CSS, JS)
+app.use(express.static(path.join(__dirname, "public"))); 
 
 // List of Nifty 50 stock symbols (with .NS suffix for Yahoo Finance)
 const nifty50Symbols = [

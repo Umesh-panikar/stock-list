@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nifty 50 Stock List</title>
+    <!-- Include DataTables CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nifty 50 Stock List</h1>
+    <table id="stockTable" class="display">
+        <thead>
+            <tr>
+                <th>Sr. No.</th> <!-- Add Sr. No. column -->
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Price (₹)</th>
+                <th>Change (₹)</th>
+                <th>Change %</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% stocks.forEach((stock, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td> <!-- Add Sr. No. -->
+                    <td><%= stock.symbol %></td>
+                    <td><%= stock.name %></td>
+                    <td><%= stock.price.toFixed(2) %></td>
+                    <td><%= stock.change.toFixed(2) %></td>
+                    <td><%= stock.changePercent.toFixed(2) %>%</td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <script>
+        // $(document).ready(function() {
+        //     $('#stockTable').DataTable({
+        //         paging: false, // Disable pagination
+        //         info: false,   // Hide "Showing X of Y entries" info
+        //     });
+        // });
+        $(document).ready(function() {
+    $('#stockTable').DataTable({
+        paging: false, // Disable pagination
+        info: false,   // Hide "Showing X of Y entries" info
+        order: [[5, 'desc']] // Sort by the 6th column (Change %) in descending order
+    });
+});
+    </script>
+</body>
+</html>
